@@ -1,0 +1,264 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="widget-design.component.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="form.css" media="screen" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(function(){
+	$("#msgid").html("This is Hello World by JQuery");
+	var action_url = $("#uni21-form-container").attr('action');
+	console.log("form action: ", action_url);
+	$("#submit_btn").click(function() {
+		var dataString = $( "#uni21-form-container" ).serialize();
+		console.log( "form data: ", dataString );
+		$.ajax({
+    		type: "POST",
+    		url: action_url,
+			data: dataString,
+			dataType: 'json',
+    		success: function(json) {
+				console.log("Success. JWT: ", json.jwt);
+				hideMe();
+				showWidget();
+				$("#submit_btn").prop('value', 'Success');
+    		},
+			error: function (xhr, ajaxOptions, thrownError) {
+				console.log("error.");
+        		console.log(xhr.status);
+        		console.log(thrownError);
+      		}
+  		});
+	 	return false;
+   	});
+});
+function hideMe() {
+	alert("hiding");
+	$("#uni21-launcher-button").hide();
+	$("#uni21-container").hide();
+}
+
+function showWidget() {
+	// alert("show widget");
+	window.tiledesk.show();
+	// window.tiledesk.open();
+}
+</script>
+<script type="application/javascript">
+    window.tiledeskSettings = 
+    {
+        projectid: "5ad5bd52c975820014ba900a",
+        preChatForm: false,
+        calloutTimer: -1,
+		align: 'right',
+		startHidden: true
+    };
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id; //js.async=!0;
+        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/953/tiledesk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'tiledesk-jssdk'));
+</script>
+</head>
+<body>
+		<div id="msgid">
+			</div>
+What is Lorem Ipsum?
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+Why do we use it?
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+Where does it come from?
+Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+Where can I get some?
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+<br>
+<br>
+<br>
+FINE.
+
+
+
+
+
+
+
+
+<div class="main-content" style="padding-top:0px">
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-md-12">
+	
+
+				<div class="card" style="padding-top:25px; padding-bottom:25px">
+					<div class="card-content">
+
+						<!-- ------====== ./end WIDGET HTML CLONE ======------  -->
+						<div class="col-md-6">
+							<div id="uni21-container"> 
+
+
+								<div class="uni21-window uni21-sheet" id="uni21-conversations">
+									<div class="uni21-sheet-header" style="background-color: rgb(238, 116, 100);">
+
+										<div class="uni21-sheet-header-title-container">
+											<b class="uni21-sheet-header-title" style="color: rgb(255, 255, 255);">
+												<span>TileDesk</span>
+											</b>
+										</div>
+					
+
+										<a class="ng-tns-c0-0">
+											<div class="uni21-header-button right">
+												<svg class="ng-tns-c0-0" aria-labelledby="altIconTitle" height="24px" role="img" viewBox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg" style="fill: rgb(255, 255, 255);">
+													<path class="ng-tns-c0-0" d="M0 0h24v24H0V0z" fill="none"></path>
+													<path class="ng-tns-c0-0" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path>
+													<title class="ng-tns-c0-0" id="altIconTitle"></title>
+												</svg>
+											</div>
+										</a>
+
+									</div>
+					
+									
+									<div class="uni21-sheet-content" id="uni21-sheet-content">
+										<!-- <div class="uni21-sheet-content-themable-section ng-tns-c0-0 themable-section-agent_not_available ng-star-inserted" style="background-color: rgb(238, 116, 100);"></div>  -->
+				
+										<div class="uni21-conversation-parts-container" style="height:100%; overflow-y: hidden;">
+											<div id="scroll-me" style="height:100%; overflow-y:auto;">
+					
+												<div id="uni21-contentScroll">
+													<form id="uni21-form-container" method="post" action="/login">
+														<fieldset>
+															<legend><b>Uno a scelta tra:</b></legend>
+															<table width="80%" border="0" cellpadding="3" cellspacing="0">
+															<tr>
+																<td>Mail:</td>
+																<td>
+																	<input type="text" name="ldap_param_mail" value="" size="20">
+																</td>
+															</tr>
+															<tr>
+																<td>Codice fiscale:</td>
+																<td>
+																	<input type="text" name="ldap_param_codicefiscale" value="" size="20">
+																</td>
+															</tr>
+															<tr>
+																<td>Matricola dipendente:</td>
+																<td>
+																	<input type="text" name="ldap_param_matricoladipendente" value="" size="20">
+																</td>
+															</tr>
+														</table>
+													</fieldset>
+													<fieldset>
+														<legend><b>Password utente:</b></legend>
+														<table width="80%" border="0" cellpadding="3" cellspacing="0">
+															<tr>
+																<td>Password:</td>
+																<td>
+																	<input type="password" name="ldap_user_password" value="" size="20">
+																</td>
+															</tr>
+														</table>
+													</fieldset>
+													<input type="submit" name="submit" class="button" id="submit_btn" value="Send" />
+												</form>
+														
+											</div>
+										</div>
+									</div>
+					
+									<div id="uni21-footer">
+
+										<div>
+											<!-- <div class="ng-tns-c0-0 visible-text-area">
+												<textarea class="f21textarea ng-tns-c0-0 ng-untouched ng-pristine ng-valid ng-star-inserted" id="uni21-main-message-context" rows="1" ystyles="" placeholder="type your message.."></textarea>
+											</div> -->
+
+											<label class="uni21-textarea-button active" for="uni21-file" id="uni21-start-upload-doc"></label>
+										
+												<div class="uni21-textarea-button active" id="uni21-button-send"></div>
+
+												<div class="name-image" id="uni21-file-selected">
+													<span class="ng-tns-c0-0"></span>
+												</div>
+										</div>
+					
+										<!-- <div class="ng-tns-c0-0" id="uni21-end-footer">
+											<div class="ng-tns-c0-0" id="uni21-powered-by"><a target="_blank" href="http://www.tiledesk.com/">Powered by <b>TileDesk</b></a></div>
+										</div> -->
+									</div>
+								</div>
+
+									<div id="uni21-launcher-button" style="background-color: rgb(238, 116, 100);"> 
+										<div style="width:100%; height:100%; padding:0px; margin: 0px;">
+											<svg class="ng-tns-c0-0" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg" style="fill: rgb(255, 255, 255);">
+												<defs class="ng-tns-c0-0">
+														<style class="ng-tns-c0-0">.cls-2{fill:none;}</style>
+												</defs>
+													
+												<g class="ng-tns-c0-0" data-name="Livello 2" id="Livello_2">
+													<g class="ng-tns-c0-0" id="gg">
+														<path class="cls-1" d="M54.92,37.08l-2-2L45,43l-7.92-7.92-2,2L43,45l-7.92,7.92,2,2L45,47l7.92,7.92,2-2L47,45Z"></path>
+														<path class="cls-2" d="M28,28H62V62H28Z"></path>
+														<rect class="cls-2" height="90" width="90"></rect>
+													</g>
+												</g>
+											</svg>
+										</div>
+									</div>
+							</div> 
+							<!-- ------====== ./end WIDGET HTML CLONE ======------  -->
+
+						</div> <!-- ./end CARD CONTENT -->
+					</div>
+				</div> <!-- ./end CARD -->
+			</div> <!-- ./end COL-* -->
+		</div> <!-- ./end ROW -->
+
+	</div>
+</div>
+
+    
+
+
+
+
+
+</body>
+</html>

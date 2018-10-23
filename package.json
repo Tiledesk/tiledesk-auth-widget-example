@@ -1,0 +1,30 @@
+{
+  "name": "tiledesk-node-jwt",
+  "version": "1.0.0",
+  "description": "Tiledesk nodejs jwt generator",
+  "engines": {
+    "node": "8.9.4"
+  }
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tiledesk/tiledesk-node-jwt.git"
+  },
+  "author": "Andrea Leo",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Tiledesk/tiledesk-node-jwt/issues"
+  },
+  "homepage": "https://github.com/Tiledesk/tiledesk-node-jwt#readme",
+  "devDependencies": {
+    "jsonwebtoken": "^8.3.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.4"
+  }
+}
