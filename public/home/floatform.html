@@ -2,6 +2,52 @@
 <head>
 <link rel="stylesheet" type="text/css" href="widget-design.component.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="form.css" media="screen" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  position: relative;
+  opacity: 0.65;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("/home/sitehome.png");
+  height: 100%;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 $(function(){
@@ -51,15 +97,16 @@ function showWidget() {
         calloutTimer: -1,
 		align: 'right',
 		startHidden: true,
-		wellcomeMsg: 'Benvenuto nel servizio di supporto di Unisalento',
+		wellcomeTitle: 'Benvenuto su Unisalento',
+		wellcomeMsg: "Come possiamo aiutarti?",
+        logoChat: "/home/unisalentologobianco.png",
 		startFromHome: true
-
     };
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id; //js.async=!0;
-        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/971/tiledesk.js";
+        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/978/tiledesk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'tiledesk-jssdk'));
 </script>
