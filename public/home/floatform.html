@@ -3,14 +3,106 @@
 <link rel="stylesheet" href="/home/uni21-widget-design.component.css" media="screen" />
 <link rel="stylesheet" href="/home/uni21-form.css" media="screen" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+	body {
+		font-size: 10px;
+	}
+#chat21-form-container {
+  padding: 30px;
+}
+#chat21-form-container .c21-input-container {
+  background-color: #fff;
+  overflow: hidden;
+  position: relative;
+  height: 36px;
+  margin: 10px 10px 0px 10px;
+}
+#chat21-form-container .text-danger {
+  color: #a94442;
+  font-size: 1em;
+  min-height: 20px;
+  background-color: #ffffff;
+  margin: 0px 10px 0px 10px;
+}
+#chat21-form-container .c21-input-container {
+  border-bottom: 1px solid rgba(211, 212, 213, 0.4);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  margin: 0 0 7px 0;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: inline-flex;
+  /* Remove input border colour */
+  /* Remove input background colour for Chrome autocomplete */
+}
+#chat21-form-container .c21-input-container input,
+#chat21-form-container .c21-input-container select {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  padding: 12px 0;
+  background-color: #ffffff;
+  vertical-align: middle;
+}
+#chat21-form-container .c21-input-container input {
+  display: block;
+  padding: 11px 10px 8px 10px;
+  color: #616161;
+  font-size: 1.3em;
+  font-weight: 300;
+  line-height: 1.2em;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#chat21-form-container .c21-input-container input::placeholder {
+  color: #b3b6b8;
+  font-weight: initial;
+  opacity: 1;
+  /* Firefox */
+}
+#chat21-form-container .c21-input-container input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  /* color: #cccccc; */
+  color: #b3b6b8;
+  font-weight: initial;
+}
+#chat21-form-container .c21-input-container input:focus,
+#chat21-form-container .c21-input-container input:active,
+#chat21-form-container .c21-input-container input:hover,
+#chat21-form-container .c21-input-container input:visited {
+  box-shadow: none;
+  background-color: #ffffff;
+  outline: none;
+}
+#chat21-form-container .c21-input-container input:-webkit-autofill,
+#chat21-form-container .c21-input-container input:-webkit-autofill:hover,
+#chat21-form-container .c21-input-container input:-webkit-autofill:focus,
+#chat21-form-container .c21-input-container input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+</style>
 <script>
 $(function(){
-	var action_url = $("#uni21-form-container").attr('action');
+	var action_url = $("#chat21-form-container").attr('action');
 	console.log("form action: ", action_url);
+	$("#anonymous_btn").click(function() {
+		// window.tiledesk.signInAnonymous();
+		hideLogin();
+		showWidget();
+		return false;
+	});
 	$("#submit_btn").click(function() {
 		var dataString = $( "#uni21-form-container" ).serialize();
 		console.log( "form data: ", dataString );
 		$("#submit_btn").prop("disabled", "disabled");
+		$("#submit_btn").html('Autenticazione in corso...');
+		$("#anonymous_btn").hide();
 		$.ajax({
     		type: "POST",
     		url: action_url,
@@ -18,23 +110,31 @@ $(function(){
 			dataType: 'json',
     		success: function(json) {
 				console.log("Success. JWT: ", json.jwt);
-				hideMe();
+				alert("Autenticazione avvenuta con successo");
+				// window.tiledesk.signInWithCustomToken(json.jwt);
+				hideLogin();
 				showWidget();
 				$("#submit_btn").prop('value', 'Success');
     		},
 			error: function (xhr, ajaxOptions, thrownError) {
 				console.log("error.");
         		console.log(xhr.status);
-        		console.log(thrownError);
+				console.log(thrownError);
+				$("#submit_btn").removeAttr('disabled');
+				$("#anonymous_btn").show();
       		}
   		});
 	 	return false;
    	});
 });
-function hideMe() {
-	alert("hiding");
+function hideLogin() {
 	$("#uni21-launcher-button").hide();
 	$("#uni21-container").hide();
+}
+
+function showLogin() {
+	$("#uni21-launcher-button").show();
+	$("#uni21-container").show();
 }
 
 function showWidget() {
@@ -50,20 +150,30 @@ function showWidget() {
         preChatForm: false,
         calloutTimer: -1,
 		align: 'right',
-	
 		startHidden: true,
+		autoStart: false,
 		wellcomeTitle: 'Benvenuto su Unisalento',
 		wellcomeMsg: "Come possiamo aiutarti?",
         logoChat: "/home/unisalentologobianco.png",
 		startFromHome: true
-    };
+	};
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id; //js.async=!0;
-        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/979/tiledesk.js";
+        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/983/tiledesk.js";
         fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'tiledesk-jssdk'));
+	}(document, 'script', 'tiledesk-jssdk'));
+	
+	window.tileDeskAsyncInit = function() {
+    //   if (!window.tiledesk.isLoggedIn()) {
+		  showLogin();
+		  window.tiledesk.hide();
+		  // else
+		//   hideLogin();
+		//   window.tiledesk.show();
+	//   }
+    }
 </script>
 </head>
 <body>
@@ -88,7 +198,7 @@ function showWidget() {
 
 										<div class="uni21-sheet-header-title-container">
 											<b class="uni21-sheet-header-title" style="color: rgb(255, 255, 255);">
-												<span>TileDesk</span>
+												<span>Unisalento</span>
 											</b>
 										</div>
 					
@@ -113,44 +223,60 @@ function showWidget() {
 											<div id="scroll-me" style="height:100%; overflow-y:auto;">
 					
 												<div id="uni21-contentScroll">
-													<form id="uni21-form-container" method="post" action="/login">
-														<fieldset>
-															<legend><b>Uno a scelta tra:</b></legend>
-															<table width="80%" border="0" cellpadding="3" cellspacing="0">
-															<tr>
-																<td>Mail:</td>
-																<td class="form-group chat21-inputContainer">
-																	<input class="ng-tns-c0-0 ng-pristine ng-invalid ng-touched" type="text" name="ldap_param_mail" value="" size="20">
-																</td>
-															</tr>
-															<tr>
-																<td>Codice fiscale:</td>
-																<td>
-																	<input type="text" name="ldap_param_codicefiscale" value="" size="20">
-																</td>
-															</tr>
-															<tr>
-																<td>Matricola dipendente:</td>
-																<td>
-																	<input type="text" name="ldap_param_matricoladipendente" value="" size="20">
-																</td>
-															</tr>
-														</table>
-													</fieldset>
-													<fieldset>
-														<legend><b>Password utente:</b></legend>
-														<table width="80%" border="0" cellpadding="3" cellspacing="0">
-															<tr>
-																<td>Password:</td>
-																<td>
-																	<input type="password" name="ldap_user_password" value="" size="20">
-																</td>
-															</tr>
-														</table>
-													</fieldset>
-													<input type="submit" name="submit" class="button" id="submit_btn" value="Send" />
-												</form>
-														
+												<form id="chat21-form-container" action="/login" >
+													<span style="color: #000; font-size: 1.3em; font-weight: bold;">Uno a scelta tra:</span>
+													<div class="text-danger">
+														<small>
+															&nbsp;
+														</small>
+													</div>
+													<div class="c21-input-container">
+														<input name="ldap_param_mail" type="text" id="form-field-name" formControlName="name" placeholder="Email">
+													</div>
+													<div class="text-danger">
+														<small>
+															&nbsp;
+														</small>
+													</div>
+													<div class="c21-input-container">
+														<input name="ldap_param_codicefiscale" type="email" id="form-field-email" formControlName="email" placeholder="Codice fiscale">
+													</div>
+													<div class="text-danger">
+														<small>
+															&nbsp;
+														</small>
+													</div>
+													<div class="c21-input-container">
+														<input name="ldap_param_matricoladipendente" type="email" id="form-field-email" formControlName="email" placeholder="Matricola dipendente">
+													</div>
+													<div class="text-danger">
+														<small>
+															&nbsp;
+														</small>
+													</div>
+
+													<span style="color: #000; font-size: 1.3em; font-weight: bold;">La tua password:</span>
+													<div class="text-danger">
+															<small>
+																&nbsp;
+															</small>
+														</div>
+													<div class="c21-input-container">
+														<input type="password" name="ldap_user_password" placeholder="Password">
+													</div>
+													<button class="c21-button-primary" id="submit_btn" style="background-color: rgb(223, 122, 106); border-color: rgb(223, 122, 106); color: #fff">
+														<span class="v-align-center c21-label-button">
+															Login
+														</span>
+														<div class="clear"></div>
+													</button>
+													<button class="c21-button-primary" id="anonymous_btn" style="background-color: rgb(223, 122, 106); border-color: rgb(223, 122, 106); color: #fff">
+															<span class="v-align-center c21-label-button">
+																Prosegui anonimo
+															</span>
+															<div class="clear"></div>
+														</button>
+												</form>	
 											</div>
 										</div>
 									</div>
