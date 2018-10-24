@@ -14,14 +14,24 @@ app.post('/login', function (req, res) {
     body += chunk.toString();
   });
   req.on('end', () => {
+    var payload = {
+      name: 'Andrea',
+      email: 'andrea.leo@frontiere21.it',
+      iat: Date.now(),
+      external_id: '123456'
+    };
+    secret = '2324f406-1910-4179-a593-b52cbcaf4975';
     var params = parse(body);
     console.log(params);
+    // verify auth
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    var jwt_token = jwt.sign(payload, secret);
     var data = {
       result: 'success',
-      jwt: 'BNRECNEUYRkjasKJASHDlkjasdjkKJLSDNJK123NNBN34Bmnsadkbj23MND'
+      jwt: jwt_token
     }
     res.json(data);
-    // res.end("{'result': 'success', 'jwt': 'BNRECNEUYRkjasKJASHDlkjasdjkKJLSDNJK123NNBN34Bmnsadkbj23MND'}");
   });
 });
 
@@ -72,10 +82,10 @@ app.listen(port, function () {
                                     //  });
 //                                  }
 //                                  else {
-//                                     res.statusCode = 200;
-//                                     res.setHeader('Content-Type', 'text/plain');
-//                                     var token = jwt.sign(payload, 'TILEDESK_SECRET_HERE');
-//                                     res.end(token);
+                                    // res.statusCode = 200;
+                                    // res.setHeader('Content-Type', 'text/plain');
+                                    // var token = jwt.sign(payload, 'TILEDESK_SECRET_HERE');
+                                    // res.end(token);
 //                                  }
 // });
 

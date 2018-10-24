@@ -89,10 +89,11 @@
 </style>
 <script>
 $(function(){
+	hideLogin();
 	var action_url = $("#chat21-form-container").attr('action');
 	console.log("form action: ", action_url);
 	$("#anonymous_btn").click(function() {
-		// window.tiledesk.signInAnonymous();
+		window.tiledesk.signInAnonymous();
 		hideLogin();
 		showWidget();
 		return false;
@@ -111,7 +112,7 @@ $(function(){
     		success: function(json) {
 				console.log("Success. JWT: ", json.jwt);
 				alert("Autenticazione avvenuta con successo");
-				// window.tiledesk.signInWithCustomToken(json.jwt);
+				window.tiledesk.signInWithCustomToken(json.jwt);
 				hideLogin();
 				showWidget();
 				$("#submit_btn").prop('value', 'Success');
@@ -161,18 +162,27 @@ function showWidget() {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id; //js.async=!0;
-        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/983/tiledesk.js";
+        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/988/tiledesk.js";
         fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'tiledesk-jssdk'));
 	
 	window.tileDeskAsyncInit = function() {
-    //   if (!window.tiledesk.isLoggedIn()) {
-		  showLogin();
-		  window.tiledesk.hide();
-		  // else
-		//   hideLogin();
-		//   window.tiledesk.show();
-	//   }
+		console.log("window.tileDeskAsyncInit()");
+    	window.tiledesk.on('isLoggedIn', function(loggedIn) {
+			var islogged = loggedIn.detail;
+			console.log("window.tiledesk.on LoggedIn ", islogged);
+			if (!islogged) {
+				console.log("ShowLogin");
+				showLogin();
+				window.tiledesk.hide();
+			}
+			else {
+				console.log("HideLogin");
+				hideLogin();
+				window.tiledesk.show();
+				window.tiledesk.open();
+			}
+		});
     }
 </script>
 </head>
