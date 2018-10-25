@@ -27,6 +27,7 @@ app.post('/login', function (req, res) {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     var jwt_token = jwt.sign(payload, secret);
+    console.log("jwt token gen ", jwt_token);
     var data = {
       result: 'success',
       jwt: jwt_token

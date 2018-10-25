@@ -113,6 +113,7 @@ $(function(){
 				console.log("Success. JWT: ", json.jwt);
 				alert("Autenticazione avvenuta con successo");
 				window.tiledesk.signInWithCustomToken(json.jwt);
+				window.tiledesk.preChatForm = false;
 				hideLogin();
 				showWidget();
 				$("#submit_btn").prop('value', 'Success');
@@ -147,22 +148,23 @@ function showWidget() {
 <script type="application/javascript">
     window.tiledeskSettings = 
     {
-        projectid: "5ad5bd52c975820014ba900a",
+        projectid: "5b8cf7525efabe00148ac969",
         preChatForm: false,
-        calloutTimer: -1,
+		calloutTimer: -1,
+		preChatForm: true,
 		align: 'right',
 		startHidden: true,
 		autoStart: false,
 		wellcomeTitle: 'Benvenuto su Unisalento',
 		wellcomeMsg: "Come possiamo aiutarti?",
         logoChat: "/home/unisalentologobianco.png",
-		startFromHome: true
+		startFromHome: false
 	};
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id; //js.async=!0;
-        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/988/tiledesk.js";
+        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/991/tiledesk.js";
         fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'tiledesk-jssdk'));
 	
