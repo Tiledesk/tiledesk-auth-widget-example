@@ -94,6 +94,7 @@ $(function(){
 	console.log("form action: ", action_url);
 	$("#anonymous_btn").click(function() {
 		window.tiledesk.signInAnonymous();
+		window.tiledesk.setStatePreChatForm(true);
 		hideLogin();
 		showWidget();
 		return false;
@@ -113,7 +114,7 @@ $(function(){
 				console.log("Success. JWT: ", json.jwt);
 				alert("Autenticazione avvenuta con successo");
 				window.tiledesk.signInWithCustomToken(json.jwt);
-				window.tiledesk.preChatForm = false;
+				window.tiledesk.setStatePreChatForm(false);
 				hideLogin();
 				showWidget();
 				$("#submit_btn").prop('value', 'Success');
@@ -164,7 +165,7 @@ function showWidget() {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id; //js.async=!0;
-        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/991/tiledesk.js";
+        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/993/tiledesk.js";
         fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'tiledesk-jssdk'));
 	
