@@ -92,6 +92,10 @@ $(function(){
 	hideLogin();
 	var action_url = $("#chat21-form-container").attr('action');
 	console.log("form action: ", action_url);
+	activateButtons(false);
+	$('#uni21-privacy-checkbox').click(function() {
+		activateButtons(this.checked);
+	});
 	$("#anonymous_btn").click(function() {
 		window.tiledesk.signInAnonymous();
 		window.tiledesk.setStatePreChatForm(true);
@@ -103,7 +107,7 @@ $(function(){
 		var dataString = $( "#uni21-form-container" ).serialize();
 		console.log( "form data: ", dataString );
 		$("#submit_btn").prop("disabled", "disabled");
-		$("#submit_btn").html('Autenticazione in corso...');
+		$("#submit_btn_content").html('Autenticazione in corso...');
 		$("#anonymous_btn").hide();
 		$.ajax({
     		type: "POST",
@@ -116,8 +120,8 @@ $(function(){
 				window.tiledesk.signInWithCustomToken(json.jwt);
 				window.tiledesk.setStatePreChatForm(false);
 				hideLogin();
+				resetButtons();
 				showWidget();
-				$("#submit_btn").prop('value', 'Success');
     		},
 			error: function (xhr, ajaxOptions, thrownError) {
 				console.log("error.");
@@ -130,6 +134,31 @@ $(function(){
 	 	return false;
    	});
 });
+
+function activateButtons(checked) {
+	var enabled_css = {'background-color': 'rgb(223, 122, 106)', 'border-color': 'rgb(223, 122, 106)', 'color': '#fff'};
+	var disabled_css = {'background-color': 'rgb(200, 200, 200)', 'border-color': 'rgb(200, 200, 200)', 'color': '#fff'};
+	
+	if (checked) {
+		$("#submit_btn").removeAttr('disabled');
+		$("#anonymous_btn").removeAttr('disabled');
+		$("#submit_btn").css(enabled_css);
+		$("#anonymous_btn").css(enabled_css);
+	}
+	else {
+		$("#submit_btn").prop("disabled", "disabled");
+		$("#anonymous_btn").prop("disabled", "disabled");
+		$("#submit_btn").css(disabled_css);
+		$("#anonymous_btn").css(disabled_css);
+	}
+}
+
+function resetButtons() {
+	$("#submit_btn").removeAttr('disabled');
+	$("#submit_btn_content").html('Login');
+	$("#anonymous_btn").show();
+}
+
 function hideLogin() {
 	$("#uni21-launcher-button").hide();
 	$("#uni21-container").hide();
@@ -149,7 +178,8 @@ function showWidget() {
 <script type="application/javascript">
     window.tiledeskSettings = 
     {
-        projectid: "5b8cf7525efabe00148ac969",
+		projectid: "5b8cf7525efabe00148ac969", // unisalento
+		// projectid: "5bd6dca2a5b77c00151d1e27",
         preChatForm: false,
 		calloutTimer: -1,
 		align: 'right',
@@ -164,7 +194,7 @@ function showWidget() {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id; //js.async=!0;
-        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/998/tiledesk.js";
+        js.src = "https://s3.eu-west-1.amazonaws.com/tiledesk-widget/dev/0/1018/tiledesk.js";
         fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'tiledesk-jssdk'));
 	
@@ -251,7 +281,7 @@ function showWidget() {
 														</small>
 													</div>
 													<div class="c21-input-container">
-														<input name="ldap_param_codicefiscale" type="email" id="form-field-email" formControlName="email" placeholder="Codice fiscale">
+														<input name="ldap_param_codicefiscale" type="email" id="form-field-codicefiscale" formControlName="codicefiscale" placeholder="Codice fiscale">
 													</div>
 													<div class="text-danger">
 														<small>
@@ -277,17 +307,15 @@ function showWidget() {
 														<input type="password" name="ldap_user_password" placeholder="Password">
 													</div>
 													<button class="c21-button-primary" id="submit_btn" style="background-color: rgb(223, 122, 106); border-color: rgb(223, 122, 106); color: #fff">
-														<span class="v-align-center c21-label-button">
-															Login
-														</span>
+														<span class="v-align-center c21-label-button"><span id="submit_btn_content">Login</span></span>
 														<div class="clear"></div>
 													</button>
 													<button class="c21-button-primary" id="anonymous_btn" style="background-color: rgb(223, 122, 106); border-color: rgb(223, 122, 106); color: #fff">
-															<span class="v-align-center c21-label-button">
-																Prosegui anonimo
-															</span>
+															<span class="v-align-center c21-label-button"><span id="anonymous_btn_content">Prosegui anonimo</span></span>
 															<div class="clear"></div>
-														</button>
+													</button>
+													<br><input type="checkbox" id="uni21-privacy-checkbox"> Dichiaro di aver letto e di accettare le norme sulla privacy<br>
+													<a href="https://www.tiledesk.com/privacy.html" target="_blank">GDPR Privacy Unisalento</a>
 												</form>	
 											</div>
 										</div>
