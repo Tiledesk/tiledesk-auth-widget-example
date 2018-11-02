@@ -15,7 +15,7 @@ app.post('/login', function (req, res) {
   });
   req.on('end', () => {
     var payload = {
-      name: 'Andrea',
+      name: 'Andrea Leo Uni',
       email: 'andrea.leo@frontiere21.it',
       iat: Date.now(),
       external_id: '123456'
