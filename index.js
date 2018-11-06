@@ -15,10 +15,10 @@ app.post('/login', function (req, res) {
   });
   req.on('end', () => {
     var payload = {
-      name: 'Andrea Sponziello Uni',
-      email: 'andrea.sponziello@frontiere21.it',
+      name: 'Andrea Sponziello Uni2',
+      email: 'andreasponziello@gmail.com',
       iat: Date.now(),
-      external_id: '2923875'
+      external_id: 'HU292387SDFG5'
     };
     secret = '2324f406-1910-4179-a593-b52cbcaf4975';
     var params = parse(body);
