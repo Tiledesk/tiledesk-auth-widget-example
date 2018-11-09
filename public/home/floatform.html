@@ -2,7 +2,7 @@
 
 <head>
 	<link rel="stylesheet" href="/home/uni21-widget-design.component.css" media="screen" />
-	<link rel="stylesheet" href="/home/uni21-form.css" media="screen" />
+	<!-- <link rel="stylesheet" href="/home/uni21-form.css" media="screen" /> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<style>
 		body {
@@ -248,191 +248,115 @@
 
 <body>
 	<img style="width: 100%;" src="/home/sitehome.png">
-	<div class="main-content" style="padding-top:0px">
-		<div class="container-fluid">
 
-			<div class="row">
-				<div class="col-md-12">
+	<div id="uni21-container">
+		<div class="uni21-window uni21-sheet" id="uni21-conversations" style="display: none;">
+			<div class="uni21-sheet-header" style="background-color: rgb(238, 116, 100);">
 
+				<div class="uni21-sheet-header-title-container">
+					<b class="uni21-sheet-header-title" style="color: rgb(255, 255, 255);">
+						<span>Unisalento</span>
+					</b>
+				</div>
 
-					<div class="card" style="padding-top:25px; padding-bottom:25px">
-						<div class="card-content">
+				<a>
+					<div class="uni21-header-button right">
+						<svg aria-labelledby="altIconTitle" height="24px" role="img" viewBox="0 0 24 24" width="100%"
+						 xmlns="http://www.w3.org/2000/svg" style="fill: rgb(255, 255, 255);">
+							<path d="M0 0h24v24H0V0z" fill="none"></path>
+							<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path>
+							<title id="altIconTitle"></title>
+						</svg>
+					</div>
+				</a>
+			</div>
 
-							<!-- ------====== ./end WIDGET HTML CLONE ======------  -->
-							<div class="col-md-6">
-								<div id="uni21-container">
+			<div class="uni21-sheet-content" id="uni21-sheet-content">
+				<div class="uni21-conversation-parts-container" style="height:100%; overflow-y: hidden;">
+					<div id="scroll-me" style="height:100%; overflow-y:auto;">
 
+						<div id="uni21-contentScroll">
 
-									<div class="uni21-window uni21-sheet" id="uni21-conversations" style="display: none;">
-										<div class="uni21-sheet-header" style="background-color: rgb(238, 116, 100);">
+							<div id="back-button" style="display: none; padding-left: 30px; font-size: 14px; color: blue; font-family: system-ui;">&lt;Indietro</div>
 
-											<div class="uni21-sheet-header-title-container">
-												<b class="uni21-sheet-header-title" style="color: rgb(255, 255, 255);">
-													<span>Unisalento</span>
-												</b>
-											</div>
-
-
-											<a class="ng-tns-c0-0">
-												<div class="uni21-header-button right">
-													<svg class="ng-tns-c0-0" aria-labelledby="altIconTitle" height="24px" role="img" viewBox="0 0 24 24" width="100%"
-													 xmlns="http://www.w3.org/2000/svg" style="fill: rgb(255, 255, 255);">
-														<path class="ng-tns-c0-0" d="M0 0h24v24H0V0z" fill="none"></path>
-														<path class="ng-tns-c0-0" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path>
-														<title class="ng-tns-c0-0" id="altIconTitle"></title>
-													</svg>
-												</div>
-											</a>
-
-										</div>
-
-
-										<div class="uni21-sheet-content" id="uni21-sheet-content">
-											<!-- <div class="uni21-sheet-content-themable-section ng-tns-c0-0 themable-section-agent_not_available ng-star-inserted" style="background-color: rgb(238, 116, 100);"></div>  -->
-
-											<div class="uni21-conversation-parts-container" style="height:100%; overflow-y: hidden;">
-												<div id="scroll-me" style="height:100%; overflow-y:auto;">
-
-													<div id="uni21-contentScroll">
-
-														<div id="back-button" style="display: none; padding-left: 30px; font-size: 14px; color: blue; font-family: system-ui;">&lt;Indietro</div>
-
-														<div id="choose-option-container" style="margin: auto;text-align: center;">
-															<button class="c21-button-primary" id="choose_login_btn" style="background-color: rgb(223, 122, 106), border-color: rgb(223, 122, 106), color: #fff">
-																<span class="v-align-center c21-label-button">Autenticati</span>
-																<div class="clear"></div>
-															</button>
-															<button class="c21-button-primary" id="choose_anonymous_btn" style="background-color: rgb(223, 122, 106), border-color: rgb(223, 122, 106), color: #fff">
-																<span class="v-align-center c21-label-button">Prosegui anonimo</span>
-																<div class="clear"></div>
-															</button>
-														</div>
+							<div id="choose-option-container" style="margin: auto;text-align: center;">
+								<button class="c21-button-primary" id="choose_login_btn" style="background-color: rgb(223, 122, 106), border-color: rgb(223, 122, 106), color: #fff">
+									<span class="v-align-center c21-label-button">Autenticati</span>
+									<div class="clear"></div>
+								</button>
+								<button class="c21-button-primary" id="choose_anonymous_btn" style="background-color: rgb(223, 122, 106), border-color: rgb(223, 122, 106), color: #fff">
+									<span class="v-align-center c21-label-button">Prosegui anonimo</span>
+									<div class="clear"></div>
+								</button>
+							</div>
 
 
-														<form id="chat21-form-container" action="/login" style="display: none">
-															<span style="color: #000; font-size: 1.3em; font-weight: bold;">Email Unisalento:</span>
-															<div class="text-danger">
-																<small>
-																	&nbsp;
-																</small>
-															</div>
-															<div class="c21-input-container">
-																<input name="ldap_param_mail" type="text" id="form-field-name" formControlName="name" placeholder="Email">
-															</div>
-															<div class="text-danger">
-																<small>
-																	&nbsp;
-																</small>
-															</div>
-															<!-- <div class="c21-input-container">
-																<input name="ldap_param_codicefiscale" type="email" id="form-field-codicefiscale" formControlName="codicefiscale"
-																 placeholder="Codice fiscale">
-															</div> -->
-															<!-- <div class="text-danger">
-																<small>
-																	&nbsp;
-																</small>
-															</div> -->
-															<!-- <div class="c21-input-container">
-																<input name="ldap_param_matricoladipendente" type="email" id="form-field-matricola" formControlName="email"
-																 placeholder="Matricola dipendente">
-															</div>
-															<div class="text-danger">
-																<small>
-																	&nbsp;
-																</small>
-															</div> -->
-
-															<span style="color: #000; font-size: 1.3em; font-weight: bold;">La tua password:</span>
-															<div class="text-danger">
-																<small>
-																	&nbsp;
-																</small>
-															</div>
-															<div class="c21-input-container">
-																<input type="password" name="ldap_user_password" placeholder="Password">
-															</div>
-															<br><br>
-															<input type="checkbox" id="uni21-remember-checkbox"> Ricordami
-															<br><br>
-															<button class="c21-button-primary" id="submit_btn" style="background-color: rgb(223, 122, 106); border-color: rgb(223, 122, 106); color: #fff">
-																<span class="v-align-center c21-label-button"><span id="submit_btn_content">Login</span></span>
-																<div class="clear"></div>
-															</button>
-															<!-- <button class="c21-button-primary" id="anonymous_btn" style="background-color: rgb(223, 122, 106); border-color: rgb(223, 122, 106); color: #fff">
+							<form id="chat21-form-container" action="/login" style="display: none">
+								<span style="color: #000; font-size: 1.3em; font-weight: bold;">Email Unisalento:</span>
+								<div class="text-danger">
+									<small>
+										&nbsp;
+									</small>
+								</div>
+								<div class="c21-input-container">
+									<input name="ldap_param_mail" type="text" id="form-field-name" formControlName="name" placeholder="Email">
+								</div>
+								<div class="text-danger">
+									<small>
+										&nbsp;
+									</small>
+								</div>
+								<span style="color: #000; font-size: 1.3em; font-weight: bold;">La tua password:</span>
+								<div class="text-danger">
+									<small>
+										&nbsp;
+									</small>
+								</div>
+								<div class="c21-input-container">
+									<input type="password" name="ldap_user_password" placeholder="Password">
+								</div>
+								<br><br>
+								<input type="checkbox" id="uni21-remember-checkbox"> Ricordami
+								<br><br>
+								<button class="c21-button-primary" id="submit_btn" style="background-color: rgb(223, 122, 106); border-color: rgb(223, 122, 106); color: #fff">
+									<span class="v-align-center c21-label-button"><span id="submit_btn_content">Login</span></span>
+									<div class="clear"></div>
+								</button>
+								<!-- <button class="c21-button-primary" id="anonymous_btn" style="background-color: rgb(223, 122, 106); border-color: rgb(223, 122, 106); color: #fff">
 																<span class="v-align-center c21-label-button"><span id="anonymous_btn_content">Prosegui anonimo</span></span>
 																<div class="clear"></div>
 															</button> -->
-															<br><input type="checkbox" id="uni21-privacy-checkbox"> Dichiaro di aver letto e di accettare le norme
-															sulla privacy<br>
-															<a href="https://www.tiledesk.com/privacy.html" target="_blank">GDPR Privacy Unisalento</a>
-														</form>
-													</div>
-												</div>
-											</div>
-
-											<div id="uni21-footer">
-
-												<div>
-													<!-- <div class="ng-tns-c0-0 visible-text-area">
-												<textarea class="f21textarea ng-tns-c0-0 ng-untouched ng-pristine ng-valid ng-star-inserted" id="uni21-main-message-context" rows="1" ystyles="" placeholder="type your message.."></textarea>
-											</div> -->
-
-													<label class="uni21-textarea-button active" for="uni21-file" id="uni21-start-upload-doc"></label>
-
-													<div class="uni21-textarea-button active" id="uni21-button-send"></div>
-
-													<div class="name-image" id="uni21-file-selected">
-														<span class="ng-tns-c0-0"></span>
-													</div>
-												</div>
-
-												<!-- <div class="ng-tns-c0-0" id="uni21-end-footer">
-											<div class="ng-tns-c0-0" id="uni21-powered-by"><a target="_blank" href="http://www.tiledesk.com/">Powered by <b>TileDesk</b></a></div>
-										</div> -->
-											</div>
-										</div>
-
-
-										<!-- ------====== ./end WIDGET HTML CLONE ======------  -->
-
-									</div> <!-- ./end CARD CONTENT -->
-								</div>
-
-								<div id="uni21-launcher-button" class="uni21-launcher-button-open" style="background-color: rgb(238, 116, 100);">
-									<div style="width:100%; height:100%; padding:0px; margin: 0px;">
-										<svg role="img" style="fill: rgb(255, 255, 255)" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
-										 viewBox="0 0 90 90">
-											<path fill="none" d="M0 0h24v24H0V0z" />
-											<path d="M33.57,31A4.58,4.58,0,0,0,29,35.57V58.3a1.94,1.94,0,0,0,3.32,1.38l3-3a.29.29,0,0,1,.21-.09H56.43A4.58,4.58,0,0,0,61,52V35.57A4.58,4.58,0,0,0,56.43,31Z" />
-										</svg>
-									</div>
-								</div>
-								<!-- OPEN ICON -->
-
-								<div id="uni21-launcher-button" class="uni21-launcher-button-closed" style="display: none; background-color: rgb(238, 116, 100);">
-									<div style="width:100%; height:100%; padding:0px; margin: 0px;">
-										<svg role="img" style="fill: rgb(255, 255, 255)" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
-										 viewBox="0 0 90 90">
-											<path fill="none" d="M0 0h24v24H0V0z" />
-											<path class="cls-1" d="M54.92,37.08l-2-2L45,43l-7.92-7.92-2,2L43,45l-7.92,7.92,2,2L45,47l7.92,7.92,2-2L47,45Z" />
-										</svg>
-									</div>
-								</div>
-
-							</div>
-						</div> <!-- ./end CARD -->
-					</div> <!-- ./end COL-* -->
-				</div> <!-- ./end ROW -->
-
+								<br><input type="checkbox" id="uni21-privacy-checkbox"> Dichiaro di aver letto e di accettare le norme
+								sulla privacy<br>
+								<a href="https://www.tiledesk.com/privacy.html" target="_blank">GDPR Privacy Unisalento</a>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+	</div>
 
-
-
-
-
-
+	<!-- OPEN ICON -->
+	<div id="uni21-launcher-button" class="uni21-launcher-button-open" style="background-color: rgb(238, 116, 100);">
+		<div style="width:100%; height:100%; padding:0px; margin: 0px;">
+			<svg role="img" style="fill: rgb(255, 255, 255)" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+			 viewBox="0 0 90 90">
+				<path fill="none" d="M0 0h24v24H0V0z" />
+				<path d="M33.57,31A4.58,4.58,0,0,0,29,35.57V58.3a1.94,1.94,0,0,0,3.32,1.38l3-3a.29.29,0,0,1,.21-.09H56.43A4.58,4.58,0,0,0,61,52V35.57A4.58,4.58,0,0,0,56.43,31Z" />
+			</svg>
+		</div>
+	</div>
+	<!-- CLOSE ICON -->
+	<div id="uni21-launcher-button" class="uni21-launcher-button-closed" style="display: none; background-color: rgb(238, 116, 100);">
+		<div style="width:100%; height:100%; padding:0px; margin: 0px;">
+			<svg role="img" style="fill: rgb(255, 255, 255)" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+			 viewBox="0 0 90 90">
+				<path fill="none" d="M0 0h24v24H0V0z" />
+				<path class="cls-1" d="M54.92,37.08l-2-2L45,43l-7.92-7.92-2,2L43,45l-7.92,7.92,2,2L45,47l7.92,7.92,2-2L47,45Z" />
+			</svg>
+		</div>
+	</div>
 
 </body>
 
