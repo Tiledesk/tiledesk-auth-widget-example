@@ -22,7 +22,7 @@ app.post('/login', function (req, res) {
     };
     secret = '3cb08c40-baed-44f8-be01-f95369897e60';
     var params = parse(body);
-    console.log(params);
+    console.log("params: ", params);
     // verify auth
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
