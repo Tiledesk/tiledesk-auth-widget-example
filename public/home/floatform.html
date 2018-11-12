@@ -98,8 +98,8 @@
 				activateButtons(this.checked);
 			});
 			$("#choose_anonymous_btn").click(function () {
-				window.tiledesk.signInAnonymous();
 				window.tiledesk.setStatePreChatForm(true);
+				window.tiledesk.signInAnonymous();
 				hideLogin();
 				showWidget();
 				return false;
