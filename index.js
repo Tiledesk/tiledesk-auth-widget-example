@@ -20,7 +20,7 @@ app.post('/login', function (req, res) {
       iat: Date.now(),
       external_id: 'HU292387SDFG5'
     };
-    secret = '3cb08c40-baed-44f8-be01-f95369897e60';
+    secret = 'b009736d-4036-4b02-8295-3da9371449a2';
     var params = parse(body);
     console.log("params: ", params);
     // verify auth
