@@ -15,12 +15,12 @@ app.post('/login', function (req, res) {
   });
   req.on('end', () => {
     var payload = {
-      name: 'Andrea Sponziello Uni2',
-      email: 'andreasponziello@gmail.com',
+      name: 'Authenticated User',
+      email: 'authuser@authuser.com',
       iat: Date.now(),
-      external_id: 'HU292387SDFG5'
+      external_id: '12345678'
     };
-    secret = 'b009736d-4036-4b02-8295-3da9371449a2';
+    secret = 'beea8923-6d35-4a9a-a279-b84f0b87cf7d';
     var params = parse(body);
     console.log("params: ", params);
     // verify auth
@@ -39,6 +39,8 @@ app.post('/login', function (req, res) {
 app.get('/', function (req, res) {
   res.send('hello world')
 });
+
+
 var port = process.env.PORT || 3000; // heroku
 app.listen(port, function () {
     console.log('Example app listening on port ', port);

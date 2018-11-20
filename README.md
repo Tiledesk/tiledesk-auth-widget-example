@@ -1,1 +1,5 @@
-# auth-widget-example
+# tiledesk-auth-widget-example
+
+Run with:
+
+npm start
